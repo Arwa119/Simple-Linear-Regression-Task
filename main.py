@@ -15,4 +15,10 @@ plt.ylabel('Dependent Variable')
 plt.title('Scatter Plot of Dependent Vs Independent Variables')
 plt.show()
 
+x= data[['total_bill']]
+y=data['tip']
+X_train , X_test, Y_train , Y_test = train_test_split(x,y,test_size=0.2 ,random_state=49)
 
+model = LinearRegression()
+model.fit(X_train,Y_train)
+y_predict = model.predict(X_test)
