@@ -4,6 +4,7 @@ import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error,r2_score
+from sklearn.preprocessing import PolynomialFeatures
 
 data = pd.read_csv('data.csv')
 print(data.isnull())
@@ -38,3 +39,14 @@ plt.show()
 # Mean Squre Error: 1.0699452926174289
 # R2 Score: 0.41611960056843744
 
+# For Better Performance
+poly= PolynomialFeatures(degree=2)
+poly_X = poly.fit_transform(x)
+X_train, X_test, y_train, y_test = train_test_split(poly_X, y, test_size=0.2, random_state=42)
+model.fit(X_train, Y_train)
+y_predPoly = model.predict(X_test)
+meanSq_poly = mean_squared_error(y_test, y_predPoly)
+r2Score_poly = r2_score(y_test, y_predPoly)
+
+print(f'Mean Squared Error (Polynomial): {meanSq_poly}')
+print(f'R-squared (Polynomial): {r2Score_poly}')
