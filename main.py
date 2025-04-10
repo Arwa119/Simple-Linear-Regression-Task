@@ -22,3 +22,19 @@ X_train , X_test, Y_train , Y_test = train_test_split(x,y,test_size=0.2 ,random_
 model = LinearRegression()
 model.fit(X_train,Y_train)
 y_predict = model.predict(X_test)
+meanSq = mean_squared_error(Y_test,y_predict)
+r2Score = r2_score(Y_test,y_predict)
+print(f"Mean Squre Error: {meanSq}")
+print(f"R2 Score: {r2Score}")
+
+sns.scatterplot(x='total_bill', y='tip', data= data)
+plt.plot(X_test,y_predict,color='red',linewidth=2)
+plt.xlabel('Total Bill')
+plt.ylabel('Tip')
+plt.title('Linear Regression Line for Total Bill & Tip')
+plt.show()
+
+# Currently the values are:
+# Mean Squre Error: 1.0699452926174289
+# R2 Score: 0.41611960056843744
+
